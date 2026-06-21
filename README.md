@@ -1,69 +1,86 @@
-# 🏏 IPL Intelligence Platform
+#  IPL Intelligence Platform
 
-## Overview
+## Enterprise Cricket Analytics & Data Engineering Platform
 
-IPL Intelligence Platform is an end-to-end Data Engineering and Analytics Engineering project built using modern data platform technologies.
+IPL Intelligence Platform is a full-stack Data Engineering project that transforms raw IPL match data into analytical insights using modern data platform technologies.
 
-The platform ingests historical IPL cricket data, processes it through a multi-layer data architecture, transforms it into analytical models, exposes insights through REST APIs, and visualizes them through interactive dashboards.
-
-This project demonstrates real-world Data Engineering concepts including Data Lakes, ETL Pipelines, Data Warehousing, Orchestration, Analytics Engineering, API Development, and Dashboarding.
+The platform demonstrates real-world Data Engineering, Analytics Engineering, Data Warehousing, API Development, and Dashboarding practices through an end-to-end cricket analytics ecosystem.
 
 ---
 
-## Project Architecture
+#  Project Overview
+
+This project processes historical IPL cricket data through a modern data architecture consisting of:
+
+* Data Lake Storage
+* ETL Pipelines
+* Data Warehouse
+* Analytics Layer
+* REST APIs
+* Interactive Dashboards
+
+The goal is to simulate how enterprise-grade analytics platforms are designed and operated in production environments.
+
+---
+
+#  Architecture
 
 ```text
 Cricsheet IPL Dataset
-            │
-            ▼
-     MinIO Data Lake
-            │
-            ▼
-     Python ETL Layer
-            │
-            ▼
+         │
+         ▼
+   MinIO Data Lake
+         │
+         ▼
+   Python ETL Layer
+         │
+         ▼
  PostgreSQL Warehouse
-            │
-            ▼
+         │
+         ▼
       dbt Models
-            │
-            ▼
+         │
+         ▼
       FastAPI APIs
-            │
-            ▼
+         │
+         ▼
  Streamlit Dashboard
 ```
 
 ---
 
-## Technology Stack
+#  Technology Stack
 
-### Data Engineering
+## Data Engineering
 
 * Python
 * Pandas
 * PyArrow
-* PostgreSQL
-* MinIO
+* SQL
 
-### Orchestration
+## Storage & Warehousing
+
+* PostgreSQL
+* MinIO Object Storage
+
+## Orchestration
 
 * Apache Airflow
 
-### Analytics Engineering
+## Analytics Engineering
 
 * dbt
 
-### API Layer
+## Backend
 
 * FastAPI
 * SQLAlchemy
 
-### Visualization
+## Frontend
 
 * Streamlit
 
-### DevOps
+## DevOps
 
 * Docker
 * Docker Compose
@@ -72,17 +89,91 @@ Cricsheet IPL Dataset
 
 ---
 
-## Data Architecture
+# 📊 Data Coverage
 
-### Bronze Layer
+| Metric          | Value    |
+| --------------- | -------- |
+| Seasons         | 19       |
+| Players         | 736      |
+| Venues          | 40       |
+| Matches         | 1,244    |
+| Deliveries      | 250,000+ |
+| Player Matchups | 31,353   |
+
+---
+
+#  Analytics Modules
+
+##  Player Explorer
+
+Analyze player performance across IPL history.
+
+Features:
+
+* Career Statistics
+* Strike Rate Analysis
+* Season Performance Trends
+* Batting Intelligence
+
+---
+
+##  Bowler Explorer
+
+Explore bowling performance metrics.
+
+Features:
+
+* Top Wicket Takers
+* Economy Rate Leaders
+* Bowling Performance Rankings
+
+---
+
+##  Matchup Intelligence
+
+Analyze batter versus bowler rivalries.
+
+Features:
+
+* Head-to-Head Matchups
+* Dismissal Analysis
+* Rivalry Statistics
+
+---
+
+##  Venue Intelligence
+
+Study venue-specific trends and scoring behavior.
+
+Features:
+
+* Highest Scoring Venues
+* Venue Comparisons
+* Historical Ground Analysis
+
+---
+
+##  Season Analytics
+
+Understand league evolution over time.
+
+Features:
+
+* Run Trends
+* Historical Season Analysis
+* League Growth Insights
+
+---
+
+#  Data Pipeline Layers
+
+## Bronze Layer
 
 Raw IPL YAML files are ingested into MinIO Data Lake.
 
-### Silver Layer
+## Silver Layer
 
-Raw data is parsed and transformed into structured parquet datasets.
-
-Examples:
+Raw data is transformed into structured parquet datasets:
 
 * Matches
 * Deliveries
@@ -90,70 +181,26 @@ Examples:
 * Teams
 * Venues
 
-### Gold Layer
+## Gold Layer
 
-Business-ready analytical models are created using dbt.
-
-Examples:
+Business-ready analytical models are created using dbt:
 
 * Player Career Analytics
 * Player Season Analytics
+* Venue Analytics
 * Bowling Analytics
 * Matchup Intelligence
-* Venue Analytics
 * Season Analytics
 
 ---
 
-## Analytics Modules
+#  REST API
 
-### 👤 Player Explorer
+Swagger Documentation:
 
-* Career Statistics
-* Strike Rate Analysis
-* Season Trends
-* Batting Intelligence
-
-### 🎯 Bowler Explorer
-
-* Top Wicket Takers
-* Economy Rate Analysis
-* Bowling Performance Metrics
-
-### ⚔️ Matchup Intelligence
-
-* Batter vs Bowler Analysis
-* Rivalry Statistics
-* Historical Dismissals
-
-### 🏟️ Venue Intelligence
-
-* Venue Scoring Patterns
-* Ground Comparisons
-* Venue Performance Trends
-
-### 📈 Season Analytics
-
-* Season Run Trends
-* Historical IPL Evolution
-* League Growth Analysis
-
----
-
-## Data Coverage
-
-| Metric     | Value    |
-| ---------- | -------- |
-| Seasons    | 19       |
-| Players    | 736      |
-| Venues     | 40       |
-| Matches    | 1,244    |
-| Deliveries | 250,000+ |
-| Matchups   | 31,353   |
-
----
-
-## API Endpoints
+```text
+http://localhost:8001/docs
+```
 
 ### Players
 
@@ -193,7 +240,7 @@ Examples:
 
 ---
 
-## Airflow Pipelines
+#  Airflow Workflows
 
 ### Bronze Ingestion DAG
 
@@ -207,64 +254,70 @@ Examples:
 
 ### Gold Analytics DAG
 
-* dbt execution
-* Analytical model generation
+* dbt model execution
+* Analytics refresh
 
 ---
 
-## Running Locally
+#  Screenshots
 
-### Clone Repository
+Add screenshots here after upload:
+
+```text
+docs/screenshots/homepage.png
+docs/screenshots/player_explorer.png
+docs/screenshots/bowler_explorer.png
+docs/screenshots/matchup_intelligence.png
+docs/screenshots/venue_intelligence.png
+docs/screenshots/season_analytics.png
+docs/screenshots/swagger_docs.png
+docs/screenshots/airflow_dag.png
+```
+
+---
+
+#  Running Locally
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/DishanGGowda/ipl-intelligence-platform.git
 cd ipl-intelligence-platform
 ```
 
-### Start Platform
+Start all services:
 
 ```bash
 docker compose up -d
 ```
 
-### Services
+---
 
-| Service      | URL                        |
-| ------------ | -------------------------- |
-| Streamlit    | http://localhost:8501      |
-| FastAPI Docs | http://localhost:8001/docs |
-| Airflow      | http://localhost:8080      |
-| MinIO        | http://localhost:9001      |
+#  Service URLs
+
+| Service              | URL                        |
+| -------------------- | -------------------------- |
+| Streamlit Dashboard  | http://localhost:8501      |
+| FastAPI Swagger Docs | http://localhost:8001/docs |
+| Airflow              | http://localhost:8080      |
+| MinIO Console        | http://localhost:9001      |
 
 ---
 
-## Project Highlights
+#  Key Highlights
 
 * End-to-End Data Engineering Pipeline
 * Data Lake Architecture using MinIO
 * PostgreSQL Data Warehouse
 * Apache Airflow Orchestration
 * dbt Analytics Engineering
-* FastAPI REST Services
-* Interactive Streamlit Dashboards
-* Fully Dockerized Deployment
+* FastAPI REST APIs
+* Interactive Streamlit Dashboard
+* Dockerized Deployment
+* Multi-Layer Data Architecture
 
 ---
 
-## Future Enhancements
-
-* Advanced Player Scouting Models
-* Predictive Analytics
-* Real-Time Match Processing
-* Data Quality Monitoring
-* Automated Testing Framework
-
----
-
-## Author
+# Author
 
 **Dishan G**
-
-Data Engineering Portfolio Project
-
-IPL Intelligence Platform v1.0
