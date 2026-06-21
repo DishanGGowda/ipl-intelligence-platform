@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: warehouse
+    database: ipl_warehouse
+    schema: public
+
+    tables:
+      - name: dim_player
+
+      - name: dim_team
+
+      - name: dim_venue
+
+      - name: dim_season
+
+      - name: dim_match
+
+      - name: fact_deliveries

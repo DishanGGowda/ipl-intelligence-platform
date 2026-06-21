@@ -36,7 +36,10 @@ services:
     restart: unless-stopped
 
   airflow-init:
-    image: apache/airflow:2.10.0
+    build:
+      context: .
+      dockerfile: airflow/Dockerfile
+
     container_name: ipl-airflow-init
 
     depends_on:
@@ -49,6 +52,7 @@ services:
       - ./airflow/dags:/opt/airflow/dags
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
+      - ./:/opt/airflow/project
 
     command: >
       bash -c "
@@ -63,7 +67,10 @@ services:
       "
 
   airflow-webserver:
-    image: apache/airflow:2.10.0
+    build:
+      context: .
+      dockerfile: airflow/Dockerfile
+
     container_name: ipl-airflow-webserver
 
     depends_on:
@@ -79,13 +86,17 @@ services:
       - ./airflow/dags:/opt/airflow/dags
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
+      - ./:/opt/airflow/project
 
     command: webserver
 
     restart: unless-stopped
 
   airflow-scheduler:
-    image: apache/airflow:2.10.0
+    build:
+      context: .
+      dockerfile: airflow/Dockerfile
+
     container_name: ipl-airflow-scheduler
 
     depends_on:
@@ -98,8 +109,27 @@ services:
       - ./airflow/dags:/opt/airflow/dags
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
+      - ./:/opt/airflow/project
 
     command: scheduler
+
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+
+    container_name: ipl-backend
+
+    depends_on:
+      - postgres
+
+    env_file:
+      - .env
+
+    ports:
+      - "8001:8000"
 
     restart: unless-stopped
 
